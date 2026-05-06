@@ -21,7 +21,7 @@ interface TradeModalProps {
   onClose: () => void;
 }
 
-const INDICES = ['SPY', 'QQQ', 'IWM', 'ES', 'NQ', 'MNQ', 'Other'];
+const INDICES = ['NIFTY', 'SENSEX', 'Other'];
 
 export function TradeModal({ date, initialTrade, onSave, onClose }: TradeModalProps) {
   const [formData, setFormData] = useState({
@@ -180,7 +180,7 @@ export function TradeModal({ date, initialTrade, onSave, onClose }: TradeModalPr
                 </Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    $
+                    ₹
                   </span>
                   <Input
                     id="entryPrice"
@@ -201,7 +201,7 @@ export function TradeModal({ date, initialTrade, onSave, onClose }: TradeModalPr
                 </Label>
                 <div className="relative">
                   <span className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground">
-                    $
+                    ₹
                   </span>
                   <Input
                     id="exitPrice"

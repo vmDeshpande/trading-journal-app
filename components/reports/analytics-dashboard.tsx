@@ -130,7 +130,7 @@ export function AnalyticsDashboard({ entries }: AnalyticsDashboardProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, value }) => `${name}: $${value.toFixed(2)}`}
+                  label={({ name, value }) => `${name}: ₹${value.toFixed(2)}`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
@@ -140,7 +140,7 @@ export function AnalyticsDashboard({ entries }: AnalyticsDashboardProps) {
                   <Cell fill={COLORS.loss} />
                 </Pie>
                 <Tooltip
-                  formatter={(value) => `$${(value as number).toFixed(2)}`}
+                  formatter={(value) => `₹${(value as number).toFixed(2)}`}
                   contentStyle={{
                     backgroundColor: '#1f2937',
                     border: '1px solid #374151',
@@ -169,7 +169,7 @@ export function AnalyticsDashboard({ entries }: AnalyticsDashboardProps) {
                   cx="50%"
                   cy="50%"
                   labelLine={false}
-                  label={({ name, value }) => `${name}: $${value.toFixed(2)}`}
+                  label={({ name, value }) => `${name}: ₹${value.toFixed(2)}`}
                   outerRadius={100}
                   fill="#8884d8"
                   dataKey="value"
@@ -179,7 +179,7 @@ export function AnalyticsDashboard({ entries }: AnalyticsDashboardProps) {
                   <Cell fill={COLORS.loss} />
                 </Pie>
                 <Tooltip
-                  formatter={(value) => `$${(value as number).toFixed(2)}`}
+                  formatter={(value) => `₹${(value as number).toFixed(2)}`}
                   contentStyle={{
                     backgroundColor: '#1f2937',
                     border: '1px solid #374151',
