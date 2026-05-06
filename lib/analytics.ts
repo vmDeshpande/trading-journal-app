@@ -196,3 +196,81 @@ export function getCurrentMonthEntries(entries: JournalEntry[]): JournalEntry[] 
 
   return entries.filter((e) => e.date >= startStr && e.date <= endStr);
 }
+
+/**
+ * Calculate overall analytics for all trades
+ */
+export function calculateOverallStats(entries: JournalEntry[]) {
+  if (entries.length === 0) {
+    return {
+      totalPnL: 0,
+      totalProfit: 0,
+      totalLoss: 0,
+      totalTrades: 0,
+      winRate: 0,
+      averageWin: 0,
+      averageLoss: 0,
+      profitFactor: 0,
+      bestTrade: 0,
+      worstTrade: 0,
+      averageExecutionQuality: 0,
+      winningTrades: 0,
+      losingTrades: 0,
+      breakevenTrades: 0,
+    };
+  }
+
+  const totalPnL = entries.reduce((sum, e) => sum + e.pnl, 0);
+
+  const winningTradesArray = entries.filter((e) => e.pnl > 0);
+  const losingTradesArray = entries.filter((e) => e.pnl < 0);
+  const breakevenTradesArray = entries.filter((e) => e.pnl === 0);
+
+  const totalProfit = winningTradesArray.reduce((sum, e) => sum + e.pnl, 0);
+
+  const totalLoss = Math.abs(
+    losingTradesArray.reduce((sum, e) => sum + e.pnl, 0)
+  );
+
+  const winningTrades = winningTradesArray.length;
+  const losingTrades = losingTradesArray.length;
+  const breakevenTrades = breakevenTradesArray.length;
+
+  const totalTrades = entries.length;
+
+  const winRate =
+    totalTrades > 0 ? (winningTrades / totalTrades) * 100 : 0;
+
+  const averageWin =
+    winningTrades > 0 ? totalProfit / winningTrades : 0;
+
+  const averageLoss =
+    losingTrades > 0 ? totalLoss / losingTrades : 0;
+
+  const profitFactor =
+    totalLoss > 0 ? totalProfit / totalLoss : totalProfit;
+
+  const bestTrade = Math.max(...entries.map((e) => e.pnl));
+  const worstTrade = Math.min(...entries.map((e) => e.pnl));
+
+  const averageExecutionQuality =
+    entries.reduce((sum, e) => sum + e.executionQuality, 0) /
+    totalTrades;
+
+  return {
+    totalPnL,
+    totalProfit,
+    totalLoss,
+    totalTrades,
+    winRate,
+    averageWin,
+    averageLoss,
+    profitFactor,
+    bestTrade,
+    worstTrade,
+    averageExecutionQuality,
+    winningTrades,
+    losingTrades,
+    breakevenTrades,
+  };
+}
